@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/User/CLionProjects/untitled1/kruh.h
+
+C:/Users/User/CLionProjects/untitled1/main.cpp
+iostream
+-
+kruh.h
+C:/Users/User/CLionProjects/untitled1/kruh.h
+
