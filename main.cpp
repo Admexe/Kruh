@@ -2,6 +2,10 @@
 #include<limits>
 #include "kruh.h"
 #include<time.h>
+int compA(const void * a1,const void * a2);
+int compD(const void * a1,const void * a2);
+int compNazov(const void * a1,const void * a2);
+
 
 int main()
 {
@@ -9,9 +13,28 @@ int main()
     //std::cout<<cislo;
     srand(time(NULL));
     Kruh Kruhy[10];
-    Kruh::generuj(Kruhy, 10);
-    Kruh::triedenie(Kruhy,10);
-    Kruh::vypisKruhy(Kruhy, 10);
+    //Kruh::generuj(Kruhy, 10);
+    //Kruh::triedenie(Kruhy,10);
+    //Kruh::vypisKruhy(Kruhy, 10);
+    Kruh * KruhyNew=Kruh::generuj( 10);
+    Kruh::vypisKruhy(KruhyNew, 10);
+    qsort(KruhyNew,10,sizeof(Kruh), compA);
+    Kruh::vypisKruhy(KruhyNew, 10);
+    qsort(KruhyNew,10,sizeof(Kruh), compD);
+    Kruh::vypisKruhy(KruhyNew, 10);
+    qsort(KruhyNew,10,sizeof(Kruh), compNazov);
+
+    int (*pCompKruh)(const void * a1,const void * a2);
+    pCompKruh=compA;
+    qsort(KruhyNew,10,sizeof(Kruh), pCompKruh);
+    pCompKruh=compD;
+    qsort(KruhyNew,10,sizeof(Kruh), pCompKruh);
+    pCompKruh=compNazov;
+    qsort(KruhyNew,10,sizeof(Kruh), pCompKruh);
+
+    Kruh::vypisKruhy(KruhyNew, 10);
+
+    delete [] KruhyNew;
 
 
 
@@ -168,6 +191,11 @@ char Kruh::getNazov() const
 {
     return nazov;
 }
+float Kruh::getPolomer() const
+{
+    return polomer;
+}
+
 void Kruh::setPolomer(float mojPolomer)
 {
     //this->
@@ -444,4 +472,25 @@ void Kruh::rnd()
 {
     polomer=rand()%100;
     nazov=rand()%('z'-'a')+'a';
+}
+
+int compA(const void * a1,const void * a2)
+{
+    Kruh * p1 = (Kruh *)a1;
+    Kruh * p2 = (Kruh *)a2;
+    return p1->getPolomer()-p2->getPolomer();
+}
+
+int compD(const void * a1,const void * a2)
+{
+    Kruh * p1 = (Kruh *)a1;
+    Kruh * p2 = (Kruh *)a2;
+    return p2->getPolomer()-p1->getPolomer();
+}
+
+int compNazov(const void * a1,const void * a2)
+{
+    Kruh * p1 = (Kruh *)a1;
+    Kruh * p2 = (Kruh *)a2;
+    return p1->getNazov()-p2->getNazov();
 }

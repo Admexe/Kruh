@@ -46,7 +46,7 @@ public:
     Kruh ();
     explicit Kruh(float mojPolomer);
     explicit Kruh (char mojNazov);
-
+    static void triedenie (Kruh pole[],int pocet);
 
 
     float getPolomer() const;
@@ -84,7 +84,7 @@ public:
     static void generuj(Kruh * pole, int pocet);
     static Kruh * generuj(int pocet);
     static void vypisKruhy(const Kruh * pole,int pocet);
-    static void triedenie (Kruh pole[],int pocet);
+
     void rnd();
     // metoda kruh:: pricitajKruh (kruh otherkruh)  const;
 
